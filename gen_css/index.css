@@ -1,6 +1,7 @@
+@charset "UTF-8";
 *, *::before, *::after {
   box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 2vh;
   overflow: hidden;
   user-select: none;
@@ -10,10 +11,7 @@ html, body, #content {
   margin: 0;
   width: 100%;
   height: 100%;
-}
-
-div {
-  border: 1px dashed blue;
+  background-color: #9E7787;
 }
 
 .page {
@@ -28,6 +26,7 @@ div {
 #main {
   display: flex;
   flex-direction: column;
+  background-color: #9E7787;
 }
 #main .header {
   position: relative;
@@ -35,22 +34,35 @@ div {
   flex-grow: 0;
   display: flex;
   flex-direction: column;
+  background-color: #FFD8E8;
+  overflow: visible;
 }
 #main .header .title {
   flex-grow: 1;
+  text-shadow: #0004 0 0.5vh 1vh;
+  overflow: visible;
 }
 #main .header .title * {
   font-size: 4vh;
+  overflow: visible;
 }
 #main .header .nav {
   display: flex;
   flex-direction: row;
   flex-grow: 0;
   height: 30%;
+  box-shadow: #0005 0 0.5vh 0.75vh;
 }
 #main .header .nav .button {
   flex-grow: 1;
   text-align: center;
+  background-color: #b4dadd;
+  border: 0.25vh solid #729699;
+  border-left: none;
+  border-right: none;
+}
+#main .header .nav .button.sel {
+  background-color: #729699;
 }
 #main .inner {
   flex-grow: 1;
@@ -78,6 +90,8 @@ div {
 }
 #main .inner .tab.status .noActivities {
   text-align: center;
+  text-shadow: #FFD8E8 0 0 1.5vh;
+  overflow: visible;
 }
 #main .inner .tab.status .activityList {
   width: 100%;
@@ -86,9 +100,17 @@ div {
 #main .inner .tab.status .activityList .entry {
   position: relative;
   padding: 1vh;
+  margin-bottom: 1vh;
+  background-color: #b4dadd;
+  border-top: 0.25vh solid #729699;
+  border-bottom: 0.25vh solid #729699;
+  box-shadow: #0005 0 0.5vh 0.75vh;
 }
 #main .inner .tab.status .activityList .entry div {
   width: 90%;
+}
+#main .inner .tab.status .activityList .entry div:nth-child(1) {
+  font-size: 2.5vh;
 }
 #main .inner .tab.status .activityList .entry::after {
   position: absolute;
@@ -103,6 +125,9 @@ div {
   height: 6vh;
   border-radius: 3vh;
   flex: none;
+  background-color: #D8FFDB;
+  border: 0.25vh solid #729975;
+  box-shadow: #0005 0 0.5vh 0.75vh;
 }
 #main .inner .tab.status .add * {
   font-size: 4vh;
@@ -122,9 +147,22 @@ div {
 #main .inner .tab.friends .friendsList .entry {
   position: relative;
   padding: 1vh;
+  margin-bottom: 1vh;
+  background-color: #b4dadd;
+  border-top: 0.25vh solid #729699;
+  border-bottom: 0.25vh solid #729699;
+  box-shadow: #0005 0 0.5vh 0.75vh;
+}
+#main .inner .tab.friends .friendsList .entry.exc {
+  background-color: #D8FFDB;
+  border-top: 0.25vh solid #729975;
+  border-bottom: 0.25vh solid #729975;
 }
 #main .inner .tab.friends .friendsList .entry div {
   max-width: 90%;
+}
+#main .inner .tab.friends .friendsList .entry div:nth-child(1) {
+  font-size: 2.5vh;
 }
 #main .inner .tab.friends .friendsList .entry::after {
   position: absolute;
@@ -133,10 +171,14 @@ div {
   transform: translateY(-50%);
   content: ">";
 }
+#main .inner .tab.friends .friendsList .entry.exc::after {
+  content: "(!) >";
+}
 
 #activity {
   display: flex;
   flex-direction: column;
+  background-color: #b4dadd;
   transition: opacity 0.15s ease, transform 0.125s ease-out;
 }
 #activity.hidden {
@@ -153,9 +195,12 @@ div {
 }
 #activity .header .title {
   flex-grow: 1;
+  text-shadow: #0004 0 0.5vh 1vh;
+  overflow: visible;
 }
 #activity .header .title * {
   font-size: 3vh;
+  overflow: visible;
 }
 #activity .header .nav {
   display: flex;
@@ -198,17 +243,25 @@ div {
   margin-bottom: 4vw;
   border-radius: 2vw;
 }
+#activity .inner .saveCancel > div.save {
+  background-color: #D8FFDB;
+  border: 0.25vh solid #729975;
+}
 #activity .inner .saveCancel > div.disabled {
-  background-color: #ccc;
-  color: #555;
+  opacity: 0.5;
+}
+#activity .inner .saveCancel > div.cancel {
+  border: 0.25vh solid #729699;
 }
 #activity .inner .saveCancel > div.delete {
   background-color: #c99;
+  border: 0.25vh solid #a66;
 }
 
 #friend {
   display: flex;
   flex-direction: column;
+  background-color: #b4dadd;
   transition: opacity 0.15s ease, transform 0.125s ease-out;
 }
 #friend.hidden {
@@ -225,9 +278,12 @@ div {
 }
 #friend .header .title {
   flex-grow: 1;
+  text-shadow: #0004 0 0.5vh 1vh;
+  overflow: visible;
 }
 #friend .header .title * {
   font-size: 3vh;
+  overflow: visible;
 }
 #friend .header .nav {
   display: flex;
@@ -256,16 +312,32 @@ div {
 #friend .inner .list .entry {
   position: relative;
   padding: 1vh;
+  margin-bottom: 1vh;
+  background-color: #FFD8E8;
+  border-top: 0.25vh solid #9E7787;
+  border-bottom: 0.25vh solid #9E7787;
+  box-shadow: #0005 0 0.5vh 0.75vh;
+}
+#friend .inner .list .entry.exc {
+  background-color: #D8FFDB;
+  border-top: 0.25vh solid #729975;
+  border-bottom: 0.25vh solid #729975;
 }
 #friend .inner .list .entry div {
   max-width: 90%;
+}
+#friend .inner .list .entry div:nth-child(1) {
+  font-size: 2.5vh;
 }
 #friend .inner .list .entry::after {
   position: absolute;
   right: 2%;
   top: 50%;
   transform: translateY(-50%);
-  content: ">";
+  content: "";
+}
+#friend .inner .list .entry.exc::after {
+  content: "⭐";
 }
 #friend .inner .back {
   width: 35vw;
@@ -275,6 +347,7 @@ div {
   margin-bottom: 4vw;
   margin-top: 4vw;
   border-radius: 2vw;
+  border: 0.25vh solid #729699;
 }
 #friend .inner .back.disabled {
   background-color: #ccc;

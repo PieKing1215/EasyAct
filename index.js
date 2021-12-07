@@ -1,12 +1,19 @@
 
+document.querySelectorAll("#main .nav .button")[0].classList.toggle("sel", true);
+document.querySelectorAll("#main .nav .button")[1].classList.toggle("sel", false);
+
 document.querySelectorAll("#main .nav .button")[0].onclick = e => {
     document.querySelectorAll("#main .tab")[0].style.transform = "translateX(0)";
     document.querySelectorAll("#main .tab")[1].style.transform = "translateX(100%)";
+    document.querySelectorAll("#main .nav .button")[0].classList.toggle("sel", true);
+    document.querySelectorAll("#main .nav .button")[1].classList.toggle("sel", false);
 };
 
 document.querySelectorAll("#main .nav .button")[1].onclick = e => {
     document.querySelectorAll("#main .tab")[0].style.transform = "translateX(-100%)";
     document.querySelectorAll("#main .tab")[1].style.transform = "translateX(0)";
+    document.querySelectorAll("#main .nav .button")[0].classList.toggle("sel", false);
+    document.querySelectorAll("#main .nav .button")[1].classList.toggle("sel", true);
 };
 
 document.querySelectorAll("#main .add")[0].onclick = e => {
@@ -34,21 +41,21 @@ document.querySelectorAll("#activity input")[2].onchange = e => {
 
 document.querySelectorAll("#friend .back")[0].onclick = e => {
     document.querySelector("#friend").classList.toggle("hidden", true);
-}
+};
 
 activities = [
-    {
-        title: "Play video games",
-        showTo: "all",
-        start: "2021-12-06T18:00",
-        end: "2021-12-06T20:00"
-    },
-    {
-        title: "Watch a movie",
-        showTo: "close",
-        start: "2021-12-06T20:30",
-        end: "2021-12-06T23:00"
-    }
+    // {
+    //     title: "Play video games",
+    //     showTo: "all",
+    //     start: "2021-12-06T18:00",
+    //     end: "2021-12-06T20:00"
+    // },
+    // {
+    //     title: "Watch a movie",
+    //     showTo: "close",
+    //     start: "2021-12-06T20:30",
+    //     end: "2021-12-06T23:00"
+    // }
 ];
 
 friends = [
@@ -66,6 +73,11 @@ friends = [
         name: "Maddy",
         activities: [
             {
+                title: "Work on homework",
+                start: "2021-12-06T12:00",
+                end: "2021-12-06T14:00"
+            },
+            {
                 title: "Play video games",
                 start: "2021-12-06T17:00",
                 end: "2021-12-06T19:45"
@@ -76,6 +88,36 @@ friends = [
                 end: "2021-12-06T23:30"
             }
         ]
+    },
+    {
+        name: "Theo",
+        activities: [
+            {
+                title: "Watch a movie",
+                start: "2021-12-06T13:00",
+                end: "2021-12-06T15:30"
+            },
+            {
+                title: "Get something to eat",
+                start: "2021-12-06T17:00",
+                end: "2021-12-06T19:00"
+            }
+        ]
+    },
+    {
+        name: "Toby",
+        activities: [
+            {
+                title: "Work on homework",
+                start: "2021-12-06T13:00",
+                end: "2021-12-06T15:30"
+            },
+            {
+                title: "Get something to eat",
+                start: "2021-12-06T17:00",
+                end: "2021-12-06T19:00"
+            }
+        ]
     }
 ];
 
@@ -83,7 +125,7 @@ updateActivityDisplay();
 
 function isMatch(my, other) {
     let nameFactor = stringSimilarity.compareTwoStrings(my.title, other.title);
-    if(nameFactor > 0.66) {
+    if(nameFactor > 0.66 || (my.title.toLowerCase().indexOf("game") !== -1 && other.title.toLowerCase().indexOf("game") !== -1) || (my.title.toLowerCase().indexOf("movie") !== -1 && other.title.toLowerCase().indexOf("movie") !== -1) || (my.title.toLowerCase().indexOf("eat") !== -1 && other.title.toLowerCase().indexOf("eat") !== -1)) {
         let a_start = new Date(my.start);
         let a_end = new Date(my.end);
         let b_start = new Date(other.start);
@@ -167,6 +209,17 @@ function updateFriendsDisplay() {
         div.appendChild(show);
 
         div.classList.add("entry");
+
+        a: for(a in e.activities) {
+            for(a2 in activities) {
+                console.log(a.title + " " + a2.title);
+                if(isMatch(e.activities[a], activities[a2])) {
+                    div.classList.add("exc");
+                    break a;
+                }
+            }
+        }
+
         div.onclick = e => {
             showFriend(i);
         }
@@ -195,8 +248,17 @@ function showFriend(index) {
         div.appendChild(show);
 
         div.classList.add("entry");
+
+        for(a2 in activities) {
+            console.log(a.title + " " + a2.title);
+            if(isMatch(e, activities[a2])) {
+                div.classList.add("exc");
+                break;
+            }
+        }
+
         div.onclick = e => {
-            showFriend(i);
+            alert("(unimplemented) There would be a popup here with links to this friend's connected accounts so you can message them.")
         }
         list.appendChild(div);
     });
@@ -249,6 +311,7 @@ function saveActivity() {
             activities[editing].start = document.querySelectorAll("#activity input")[1].value;
             activities[editing].end = document.querySelectorAll("#activity input")[2].value;
             updateActivityDisplay();
+            updateFriendsDisplay();
         } else {
             let n = {};
             n.showTo = document.querySelectorAll("#activity select")[0].value;
@@ -257,6 +320,7 @@ function saveActivity() {
             n.end = document.querySelectorAll("#activity input")[2].value;
             activities.push(n);
             updateActivityDisplay();
+            updateFriendsDisplay();
         }
     }
 }
@@ -269,6 +333,7 @@ function deleteActivity() {
     if(editing !== -1 && confirm("Are you sure you want to delete this activity?")) {
         activities.splice(editing, 1);
         updateActivityDisplay();
+        updateFriendsDisplay();
         document.querySelectorAll("#activity")[0].classList.toggle("hidden", true);
     }
 }
