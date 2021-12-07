@@ -1,0 +1,293 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 2vh;
+  overflow: hidden;
+  user-select: none;
+}
+
+html, body, #content {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+div {
+  border: 1px dashed blue;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+}
+#main .header {
+  position: relative;
+  height: 20%;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+}
+#main .header .title {
+  flex-grow: 1;
+}
+#main .header .title * {
+  font-size: 4vh;
+}
+#main .header .nav {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  height: 30%;
+}
+#main .header .nav .button {
+  flex-grow: 1;
+  text-align: center;
+}
+#main .inner {
+  flex-grow: 1;
+  position: relative;
+}
+#main .inner .tab {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: transform 0.125s ease-out;
+}
+#main .inner .tab:nth-child(1) {
+  transform: translateX(0);
+}
+#main .inner .tab:nth-child(2) {
+  transform: translateX(100%);
+}
+#main .inner .tab.status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+  padding-bottom: 6vh;
+  overflow-y: scroll;
+}
+#main .inner .tab.status .noActivities {
+  text-align: center;
+}
+#main .inner .tab.status .activityList {
+  width: 100%;
+  flex: none;
+}
+#main .inner .tab.status .activityList .entry {
+  position: relative;
+  padding: 1vh;
+}
+#main .inner .tab.status .activityList .entry div {
+  width: 90%;
+}
+#main .inner .tab.status .activityList .entry::after {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  content: ">";
+}
+#main .inner .tab.status .add {
+  margin-top: 1vh;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 3vh;
+  flex: none;
+}
+#main .inner .tab.status .add * {
+  font-size: 4vh;
+}
+#main .inner .tab.friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+  padding-bottom: 6vh;
+  overflow-y: scroll;
+}
+#main .inner .tab.friends .friendsList {
+  width: 100%;
+  flex: none;
+}
+#main .inner .tab.friends .friendsList .entry {
+  position: relative;
+  padding: 1vh;
+}
+#main .inner .tab.friends .friendsList .entry div {
+  max-width: 90%;
+}
+#main .inner .tab.friends .friendsList .entry::after {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  content: ">";
+}
+
+#activity {
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.15s ease, transform 0.125s ease-out;
+}
+#activity.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.33);
+}
+#activity .header {
+  position: relative;
+  height: 10%;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+}
+#activity .header .title {
+  flex-grow: 1;
+}
+#activity .header .title * {
+  font-size: 3vh;
+}
+#activity .header .nav {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  height: 30%;
+}
+#activity .header .nav .button {
+  flex-grow: 1;
+  text-align: center;
+}
+#activity .inner {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+}
+#activity .inner .formEntry {
+  align-items: center;
+  display: flex;
+  margin: 1vh;
+}
+#activity .inner .formEntry label {
+  margin-right: 2vw;
+}
+#activity .inner .saveCancel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5vh;
+}
+#activity .inner .saveCancel > div {
+  width: 35vw;
+  height: 10vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  margin-bottom: 4vw;
+  border-radius: 2vw;
+}
+#activity .inner .saveCancel > div.disabled {
+  background-color: #ccc;
+  color: #555;
+}
+#activity .inner .saveCancel > div.delete {
+  background-color: #c99;
+}
+
+#friend {
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.15s ease, transform 0.125s ease-out;
+}
+#friend.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.33);
+}
+#friend .header {
+  position: relative;
+  height: 10%;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+}
+#friend .header .title {
+  flex-grow: 1;
+}
+#friend .header .title * {
+  font-size: 3vh;
+}
+#friend .header .nav {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  height: 30%;
+}
+#friend .header .nav .button {
+  flex-grow: 1;
+  text-align: center;
+}
+#friend .inner {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+  padding-bottom: 6vh;
+  overflow-y: scroll;
+}
+#friend .inner .list {
+  width: 100%;
+  flex: none;
+}
+#friend .inner .list .entry {
+  position: relative;
+  padding: 1vh;
+}
+#friend .inner .list .entry div {
+  max-width: 90%;
+}
+#friend .inner .list .entry::after {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  content: ">";
+}
+#friend .inner .back {
+  width: 35vw;
+  height: 10vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  margin-bottom: 4vw;
+  margin-top: 4vw;
+  border-radius: 2vw;
+}
+#friend .inner .back.disabled {
+  background-color: #ccc;
+  color: #555;
+}
+#friend .inner .back.delete {
+  background-color: #c99;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=index.css.map */

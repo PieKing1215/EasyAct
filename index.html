@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>EasyAct</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="gen_css/index.css">
+    </head>
+    <body>
+        <div id="content">
+            <div class="page" id="main">
+                <div class="header">
+                    <div class="title flex-center">
+                        <div>
+                            EasyAct
+                        </div>
+                    </div>
+                    <div class="nav">
+                        <div class="button flex-center">
+                            My Status
+                        </div>
+                        <div class="button flex-center">
+                            Friends
+                        </div>
+                    </div>
+                </div>
+                <div class="inner">
+                    <div class="tab status">
+                        <div class="noActivities">
+                            You have no desired activities right now.<br>
+                            Click the (+) button to add activities.
+                        </div>
+                        <div class="activityList"></div>
+                        <div class="add flex-center">
+                            <div>+</div>
+                        </div>
+                    </div>
+                    <div class="tab friends">
+                        <div class="friendsList"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page hidden" id="activity">
+                <div class="header">
+                    <div class="title flex-center">
+                        <div>
+                            Add/Edit Activity
+                        </div>
+                    </div>
+                </div>
+                <div class="inner">
+                    <div class="formEntry">
+                        <label for="title">Title</label>
+                        <input type="text" name="title">
+                    </div>
+                    <div class="formEntry">
+                        <label for="show">Show to</label>
+                        <select name="show">
+                          <option value="all">All Friends</option>
+                          <option value="close">Close Friends</option>
+                          <option value="best">Best Friends</option>
+                        </select> 
+                    </div>
+                    <div class="formEntry">
+                        <label for="start">
+                            Availability<br>
+                            Start Time
+                        </label>
+                        <input type="datetime-local" name="start">
+                    </div>
+                    <div class="formEntry">
+                        <label for="end">
+                            Availability<br>
+                            End Time
+                        </label>
+                        <input type="datetime-local" name="end">
+                    </div>
+                    <div class="saveCancel">
+                        <div class="cancel flex-center">
+                            <div>Cancel</div>
+                        </div>
+                        <div class="save flex-center">
+                            <div>Save</div>
+                        </div>
+                        <div class="delete flex-center">
+                            <div>Delete</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page hidden" id="friend">
+                <div class="header">
+                    <div class="title flex-center">
+                        <div>
+                            Friend wants to
+                        </div>
+                    </div>
+                </div>
+                <div class="inner">
+                    <div class="list">
+                        <div class="entry"><div>Play Rocket League</div><div>- With all friends</div></div>
+                    </div>
+                    <div class="back flex-center">
+                        <div>Back</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
+        <script src="index.js" async defer></script>
+    </body>
+</html>
