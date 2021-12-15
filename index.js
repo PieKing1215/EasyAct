@@ -47,14 +47,14 @@ activities = [
     // {
     //     title: "Play video games",
     //     showTo: "all",
-    //     start: "2021-12-06T18:00",
-    //     end: "2021-12-06T20:00"
+    //     start: "2021-12-15T18:00",
+    //     end: "2021-12-15T20:00"
     // },
     // {
     //     title: "Watch a movie",
     //     showTo: "close",
-    //     start: "2021-12-06T20:30",
-    //     end: "2021-12-06T23:00"
+    //     start: "2021-12-15T20:30",
+    //     end: "2021-12-15T23:00"
     // }
 ];
 
@@ -64,28 +64,23 @@ friends = [
         activities: [
             {
                 title: "Watch a movie",
-                start: "2021-12-06T21:00",
-                end: "2021-12-06T23:30"
+                start: "2021-12-15T21:00",
+                end: "2021-12-15T23:30"
             }
         ]
     },
     {
-        name: "Maddy",
+        name: "Alice",
         activities: [
             {
-                title: "Work on homework",
-                start: "2021-12-06T12:00",
-                end: "2021-12-06T14:00"
+                title: "Go to the park",
+                start: "2021-12-15T12:00",
+                end: "2021-12-15T14:00"
             },
             {
-                title: "Play video games",
-                start: "2021-12-06T17:00",
-                end: "2021-12-06T19:45"
-            },
-            {
-                title: "Watch a movie",
-                start: "2021-12-06T20:30",
-                end: "2021-12-06T23:30"
+                title: "Group study",
+                start: "2021-12-15T17:00",
+                end: "2021-12-15T19:45"
             }
         ]
     },
@@ -94,13 +89,13 @@ friends = [
         activities: [
             {
                 title: "Watch a movie",
-                start: "2021-12-06T13:00",
-                end: "2021-12-06T15:30"
+                start: "2021-12-15T13:00",
+                end: "2021-12-15T15:30"
             },
             {
                 title: "Get something to eat",
-                start: "2021-12-06T17:00",
-                end: "2021-12-06T19:00"
+                start: "2021-12-15T17:00",
+                end: "2021-12-15T19:00"
             }
         ]
     },
@@ -109,13 +104,43 @@ friends = [
         activities: [
             {
                 title: "Work on homework",
-                start: "2021-12-06T13:00",
-                end: "2021-12-06T15:30"
+                start: "2021-12-15T13:00",
+                end: "2021-12-15T15:30"
             },
             {
-                title: "Get something to eat",
-                start: "2021-12-06T17:00",
-                end: "2021-12-06T19:00"
+                title: "Go get lunch",
+                start: "2021-12-15T17:00",
+                end: "2021-12-15T19:00"
+            }
+        ]
+    },
+    {
+        name: "Maddy",
+        activities: [
+            {
+                title: "Work on homework",
+                start: "2021-12-15T12:00",
+                end: "2021-12-15T14:00"
+            },
+            {
+                title: "Play video games",
+                start: "2021-12-15T17:00",
+                end: "2021-12-15T19:45"
+            },
+            {
+                title: "Watch a movie",
+                start: "2021-12-15T20:30",
+                end: "2021-12-15T23:30"
+            }
+        ]
+    },
+    {
+        name: "Bob",
+        activities: [
+            {
+                title: "Go shopping",
+                start: "2021-12-15T13:00",
+                end: "2021-12-15T16:30"
             }
         ]
     }
@@ -343,9 +368,13 @@ detectSwipe(document.querySelectorAll("#main")[0], (el, dir) => {
         if(dir === "left") {
             document.querySelectorAll("#main .tab")[0].style.transform = "translateX(-100%)";
             document.querySelectorAll("#main .tab")[1].style.transform = "translateX(0)";
+            document.querySelectorAll("#main .nav .button")[0].classList.toggle("sel", false);
+            document.querySelectorAll("#main .nav .button")[1].classList.toggle("sel", true);
         } else if(dir === "right") {
             document.querySelectorAll("#main .tab")[0].style.transform = "translateX(0)";
             document.querySelectorAll("#main .tab")[1].style.transform = "translateX(100%)";
+            document.querySelectorAll("#main .nav .button")[0].classList.toggle("sel", true);
+            document.querySelectorAll("#main .nav .button")[1].classList.toggle("sel", false);
         }
     }
 });
